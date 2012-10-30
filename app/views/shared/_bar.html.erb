@@ -1,0 +1,10 @@
+<div class="navbar navbar-fixed-top">
+<ul class="nav nav-pills" style="float: left"><li  class="active"><%= link_to 'Pokemon', 'pokemons' %></li>
+<% u = Trainer.find(session[:user_id]) %>
+<% unless u.nil? %> 
+	<li class="active"><a href="#">
+<%= u.email %>
+	</a></li>
+    <% end %>
+</ul><ul class="nav nav-pills" style="float: right"><li class="active"><%= link_to 'Logout', '/logout' %></li></ul>
+</div>

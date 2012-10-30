@@ -1,0 +1,25 @@
+class SessionController < ApplicationController
+
+	skip_before_filter :require_user, :only => [:new, :create]
+
+	def new
+	#	render 'session/new'
+	end
+	
+	def create
+
+		@user = User.first(:email => params[:email])
+		
+		if @user
+			session[:user_id] = @user.id
+			redirect_to '/comics'
+		else
+			redirect_to login_url
+		end
+	end
+
+	def destroy
+		session[:user_id] = nil
+		redirect_to login_url
+	end
+end

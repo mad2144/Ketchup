@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  pokedex_number: 1
+  type: 
+  species: MyString
+
+two:
+  name: MyString
+  pokedex_number: 1
+  type: 
+  species: MyString
