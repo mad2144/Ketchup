@@ -3,7 +3,7 @@
 Team <%= @party.name %><br />
 owned by Trainer <%= @party.trainer.first_name %><br />
 has the following Pokemon: <% @party.pokemon.to_a.each do |p| %>
-<br /> <%= p.name %>
+<br /> <%= image_tag p.avatar.url %>
 <% end %>
 <br />
 <%= link_to 'Edit', edit_party_path(@party) %> |

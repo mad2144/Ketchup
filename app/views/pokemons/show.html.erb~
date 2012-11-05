@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @pokemon.name %>
+  <b>Pokedex number:</b>
+  <%= @pokemon.pokedex_number %>
 </p>
 
 <p>
-  <b>Pokedex number:</b>
-  <%= @pokemon.pokedex_number %>
+  <b>Name:</b>
+  <%= @pokemon.name %>
 </p>
 
 <p>
@@ -24,6 +24,8 @@
   <b>Trainer:</b>
   <%= @pokemon.trainer.id %>
 </p>
+
+<%= image_tag @pokemon.avatar.url %>
 
 <%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
 <%= link_to 'Back', pokemons_path %>

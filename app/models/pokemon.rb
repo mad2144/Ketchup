@@ -1,5 +1,9 @@
+include MMPaperclip
+require 'paperclip'
+
 class Pokemon
   include MongoMapper::Document
+  include Paperclip::Glue
 
   key :name, String
   key :pokedex_number, Integer
@@ -23,4 +27,9 @@ class Pokemon
           errors.add(:name, "Every Pokemon must have a name, silly!")
         end
   end
+
+  has_attached_file :avatar
+
+  key :avatar_file_name, String
+
 end
