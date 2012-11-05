@@ -5,7 +5,7 @@ class Trainer
   key :last_name, String
   key :email, String
   key :admin, Integer
-
+  one :party
   many :pokemon
   
   validates :email, presence: true, uniqueness: {message: "Email already used."}

@@ -13,7 +13,7 @@ class Pokemon
   validate :match
 
   def match
-	if ((not party.nil?) && party.trainer != trainer)
+	if (not party.nil?) && party.trainer != trainer
 	  errors.add(:party, "The party must be owned the same trainer")
 	end
   end

@@ -2,11 +2,11 @@
 
 <table>
   <tr>
-    <th>Pokedex#</th>
+    <th>Pokedex</th>
     <th>Name</th>
     <th>Type</th>
     <th>Species</th>
-    <th></th>
+    <th>Owner</th>
     <th></th>
     <th></th>
   </tr>
@@ -17,7 +17,18 @@
     <td><%= pokemon.name %></td>
     <td><%= pokemon.type %></td>
     <td><%= pokemon.species %></td>
+    <td><%= pokemon.trainer.first_name %></td>
     <td><%= link_to 'Show', pokemon %></td>
+    <td><% if @trainer.party.nil? %>
+          <%= link_to 'Add', add_url(:id => pokemon) %>
+        <% else %>
+	  <% if @trainer.party.pokemon.to_a.any? {|x| x.name == pokemon.name } %>
+            <%= link_to 'Delete', add_url(:id => pokemon) %>
+          <% else %>
+            <%= link_to 'Add', add_url(:id => pokemon) %>
+          <% end %>
+  <% end %>
+    </td>
     <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
     <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

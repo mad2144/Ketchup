@@ -1,6 +1,6 @@
 <div class="navbar navbar-fixed-top">
-<ul class="nav nav-pills" style="float: left"><li  class="active"><%= link_to 'Comics', 'comics' %></li>
-<% u = User.find(session[:user_id]) %>
+<ul class="nav nav-pills" style="float: left"><li><%= link_to 'Pokemon', '/pokemons' %></li><li><%= link_to 'Parties', '/parties' %></li>
+<li><%= link_to 'Trainers', '/trainers' %></li><% u = Trainer.find(session[:user_id]) %>
 <% unless u.nil? %> 
 	<li class="active"><a href="#">
 <%= u.email %>

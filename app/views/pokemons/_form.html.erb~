@@ -28,7 +28,7 @@
     <%= f.text_field :species %>
   </div>
   
-  <%= collection_select(:pokemon_id, :trainer_id, Trainer.all, :id, :first_name) %>
+ # <%= collection_select(:pokemon, :trainer_id, Trainer.all, :id, :first_name) %>
 
   <div class="actions">
     <%= f.submit %>

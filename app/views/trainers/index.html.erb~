@@ -6,8 +6,8 @@
     <th>Last name</th>
     <th>Email</th>
     <th>Admin</th>
-    <th></th>
-    <th></th>
+    <th>ID</th>
+    <th>Party</th>
   </tr>
 
 <% @trainers.each do |trainer| %>
@@ -16,6 +16,8 @@
     <td><%= trainer.last_name %></td>
     <td><%= trainer.email %></td>
     <td><%= trainer.admin %></td>
+    <td><%= trainer.id %></td>
+    <td><%= trainer.party %></td>
     <td><%= link_to 'Show', trainer %></td>
     <td><%= link_to 'Edit', edit_trainer_path(trainer) %></td>
     <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

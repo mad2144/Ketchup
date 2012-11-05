@@ -3,7 +3,6 @@ class PokemonsController < ApplicationController
   # GET /pokemons.json
 
   def index
-
     @trainer = Trainer.find(session[:user_id])
     
     if @trainer.admin == 1
@@ -29,6 +28,38 @@ class PokemonsController < ApplicationController
     end
   end
 
+  # GET /pokemons/1/add
+  def add
+
+    @pokemon = Pokemon.find(params[:id])
+    @trainer = Trainer.find(session[:user_id])
+
+    puts "***********************"
+    puts "\n"
+    puts @trainer.party.blank?
+
+    if @trainer.party.blank?
+	respond_to do |format|	
+	   format.html { redirect_to @trainer, notice: 'Please create a party first.' }
+	end    
+    else
+
+      unless @trainer.party.pokemon.to_a.any? { |pokemon| pokemon == @pokemon }
+	@trainer.party.pokemon.push @pokemon
+
+        if (@trainer.party.save && @pokemon.save && @trainer.save) 
+	  respond_to do |format|
+       	    format.html { redirect_to @trainer.party, notice: 'Pokemon was successfully added.' }
+      	  end
+        end
+      else
+        respond_to do |format|
+       	    format.html { redirect_to @trainer.party, notice: 'Pokemon was already added.' }
+        end
+      end
+    end
+  end
+
   # GET /pokemons/new
   # GET /pokemons/new.json
   def new
@@ -48,7 +79,11 @@ class PokemonsController < ApplicationController
   # POST /pokemons
   # POST /pokemons.json
   def create
+
     @pokemon = Pokemon.new(params[:pokemon])
+    @trainer = Trainer.find(session[:user_id])
+    @pokemon.trainer = @trainer
+    @trainer.pokemon.push @pokemon
 
     respond_to do |format|
       if @pokemon.save

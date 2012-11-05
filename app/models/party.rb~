@@ -1,0 +1,7 @@
+class Party
+  include MongoMapper::Document
+  :name, String
+
+  belongs_to :trainer
+  many :pokemon
+end
