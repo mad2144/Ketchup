@@ -23,7 +23,7 @@
           <%= link_to 'Add', add_url(:id => pokemon) %>
         <% else %>
 	  <% if @trainer.party.pokemon.to_a.any? {|x| x.name == pokemon.name } %>
-            <%= link_to 'Delete', add_url(:id => pokemon) %>
+            <%= link_to 'Remove', remove_url(:id => pokemon) %>
           <% else %>
             <%= link_to 'Add', add_url(:id => pokemon) %>
           <% end %>

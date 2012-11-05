@@ -32,7 +32,7 @@
     <%= f.text_field :email %>
   </div>
   <% trainer = Trainer.find(session[:user_id]) %>
-  <% if (not trainer.nil?) && trainer.admin == 1 %>
+  <% if not trainer.nil? && trainer.admin == 1 %>
   <div class="field">
     <%= f.label :admin %><br />
     <%= f.number_field :admin %>

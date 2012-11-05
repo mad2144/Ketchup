@@ -34,10 +34,6 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.find(params[:id])
     @trainer = Trainer.find(session[:user_id])
 
-    puts "***********************"
-    puts "\n"
-    puts @trainer.party.blank?
-
     if @trainer.party.blank?
 	respond_to do |format|	
 	   format.html { redirect_to @trainer, notice: 'Please create a party first.' }

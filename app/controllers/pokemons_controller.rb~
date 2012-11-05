@@ -34,17 +34,13 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.find(params[:id])
     @trainer = Trainer.find(session[:user_id])
 
-    puts "***********************"
-    puts "\n"
-    puts @trainer.party.blank?
-
     if @trainer.party.blank?
 	respond_to do |format|	
 	   format.html { redirect_to @trainer, notice: 'Please create a party first.' }
 	end    
     else
 
-      unless @trainer.party.pokemon.to_a.contains? { |pokemon| pokemon == @pokemon }
+      unless @trainer.party.pokemon.to_a.any? { |pokemon| pokemon == @pokemon }
 	@trainer.party.pokemon.push @pokemon
 
         if (@trainer.party.save && @pokemon.save && @trainer.save) 

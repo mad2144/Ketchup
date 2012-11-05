@@ -1,10 +1,13 @@
 class PartiesController < ApplicationController
   # GET /parties
   # GET /parties.json
+
+  skip_before_filter :require_user, :only=> [:show]
+
   def index
 
     @trainer = Trainer.find(session[:user_id])
-    
+
     if @trainer.admin == 1
     	@parties = Party.all(:order => :name.asc)
     else
@@ -40,7 +43,30 @@ class PartiesController < ApplicationController
         format.json { render json: @party }
       end
     else
-	redirect_to login_url
+        @party = @trainer.party
+	respond_to do |format|
+          format.html { redirect_to @party, :notice => "You already have a party." }
+        end
+   end
+  end
+
+  # GET /parties/id/remove
+  def remove
+
+      @trainer = Trainer.find(session[:user_id])
+      @party = Party.find(@trainer.party.id.to_s)
+      @pokemon = Pokemon.find(params[:id])
+
+      unless (@pokemon.nil? && @party.nil?)
+      	@party.pokemon.delete @pokemon.id
+        @party.save
+        respond_to do |format|
+          format.html { redirect_to @party, :notice => "Removed Pokemon from party." }
+      end
+    else
+	respond_to do |format|
+          format.html { redirect_to @party, :notice => "Failed to remove Pokemon from party." }
+        end
    end
   end
 

@@ -12,6 +12,7 @@ Ketchup::Application.routes.draw do
   get "/logout" => "session#destroy", :as => "logout"
 
   match '/pokemons/:id/add' => 'pokemons#add', :as => "add"
+  match '/parties/:id/remove' => 'parties#remove', :as => "remove"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
