@@ -1,40 +1,33 @@
-<h1>Listing Pokemon</h1>
+<%= link_to 'Add a Pokemon', new_pokemon_path %>
 
-<table>
-  <tr>
-    <th>Pokedex</th>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Species</th>
-    <th>Owner</th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>The ones you've caught:</h1>
 
 <% @pokemons.each do |pokemon| %>
-  <tr>    
-    <td>#<%= pokemon.pokedex_number %></td>
-    <td><%= pokemon.name %></td>
-    <td><%= pokemon.type %></td>
-    <td><%= pokemon.species %></td>
-    <td><%= pokemon.trainer.first_name %></td>
-    <td><%= link_to 'Show', pokemon %></td>
-    <td><% if @trainer.party.nil? %>
-          <%= link_to 'Add', add_url(:id => pokemon) %>
+  <div class="pokemon">    
+    <div class="pokedex">#<%= pokemon.pokedex_number %></div>
+    <p><%= pokemon.name %><br />
+    Type: <%= pokemon.type %><br />
+    Species: <%= pokemon.species %><br />
+    Owned by: <%= pokemon.trainer.first_name %><br />
+    
+    <% unless pokemon.party.nil? %>
+    In party: <%= pokemon.party.name %><br /><br />
+    <% end %>
+    <%= link_to 'Show', pokemon %> | 
+    <% if @trainer.party.nil? %>
+          <%= link_to 'Add to my party', add_url(:id => pokemon) %>
         <% else %>
 	  <% if @trainer.party.pokemon.to_a.any? {|x| x.name == pokemon.name } %>
-            <%= link_to 'Remove', remove_url(:id => pokemon) %>
+            <%= link_to 'Remove from my party', remove_url(:id => pokemon) %>
           <% else %>
-            <%= link_to 'Add', add_url(:id => pokemon) %>
+            <%= link_to 'Add to my party', add_url(:id => pokemon) %>
           <% end %>
   <% end %>
-    </td>
-    <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
-    <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+     | 
+    <%= link_to 'Edit', edit_pokemon_path(pokemon) %> | 
+    <%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %><br />
+  </div>
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New Pokemon', new_pokemon_path %>

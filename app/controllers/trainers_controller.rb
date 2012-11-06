@@ -1,6 +1,6 @@
 class TrainersController < ApplicationController
   
-  skip_before_filter :require_user, :only=> [:new, :create]
+  skip_before_filter :require_user, :only=> [:new, :create, :show]
 
   # GET /trainers
   # GET /trainers.json

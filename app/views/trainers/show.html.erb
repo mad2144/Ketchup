@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h1>My Trainer Profile</h1>
 <p>
   <b>First name:</b>
   <%= @trainer.first_name %>
@@ -11,21 +11,18 @@
 </p>
 
 <p>
+  <b>Hometown:</b>
+  <%= @trainer.hometown %>
+</p>
+
+<p>
   <b>Email:</b>
   <%= @trainer.email %>
 </p>
 
 <p>
-  <b>Admin:</b>
-  <%= @trainer.admin %>
+  <b>Motto:</b>
+  <%= @trainer.motto %>
 </p>
 
-<p>
-  <b>Pokemon:</b>
-  <% @trainer.pokemon.each do |pokemon| %>
-  <%= pokemon.name %>
-  <% end %> 
-</p>
-
-<%= link_to 'Edit', edit_trainer_path(@trainer) %> |
-<%= link_to 'Back', trainers_path %>
+<%= link_to 'Edit', edit_trainer_path(@trainer) %>

@@ -1,10 +1,20 @@
+<div class="container">
 <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" style="margin-left= 0px" href="/login">Ketchup</a>
+    <ul class="nav">
 <% u = Trainer.find(session[:user_id]) %>
-<% unless u.nil? %> 
-<ul class="nav nav-pills" style="float: left"><li><%= link_to 'My Pokemon', '/pokemons' %></li><li><%= link_to 'My Party', '/parties' %></li>
-<li><%= link_to 'My Trainer Profile', u %></li><li><a href="#"><%= u.email %></a></li>
-<% else %>
-<li class="active"><a href="/trainers/new">Join Ketchup!</a></li>
+<% unless u.nil? %>
+<% party = u.party %>
+<% if party.nil? %>
+<% party = '/parties/new' %>
 <% end %>
-</ul><ul class="nav nav-pills" style="float: right"><li class="active"><%= link_to 'Logout', '/logout' %></li></ul>
+<li><%= link_to 'My Pokemon', '/pokemons' %></li><li><%= link_to 'My Party', party %></li>
+<li><%= link_to 'My Trainer Profile', u %></li><li><a href="#"><%= u.email %></a></li><li><%= link_to 'Logout', '/logout' %></li>
+<% else %>
+<li><a href="/trainers/new">Join Ketchup!</a></li>
+<% end %>
+</ul>
+</div>
+</div>
 </div>

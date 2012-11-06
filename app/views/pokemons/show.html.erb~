@@ -22,7 +22,8 @@
 
 <p>
   <b>Trainer:</b>
-  <%= @pokemon.trainer.id %>
+  <%= @pokemon.trainer.first_name %>
+  <%= @pokemon.trainer.last_name %>
 </p>
 
 <%= image_tag @pokemon.avatar.url %>
