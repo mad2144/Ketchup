@@ -26,11 +26,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'bson_ext'
-
 gem 'formtastic'
-
+gem 'bootstrap-sass', '2.1.1'
 gem 'paperclip'
 gem 'mongomapper-paperclip'
 

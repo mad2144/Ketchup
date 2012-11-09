@@ -1,32 +1,39 @@
 <%= link_to 'Add a Pokemon', new_pokemon_path %>
 
-<h1>The ones you've caught:</h1>
-
+<h3>The ones you've caught:</h3>
+<% count = 0 %>
 <% @pokemons.each do |pokemon| %>
-  <div class="pokemon">    
-    <div class="pokedex">#<%= pokemon.pokedex_number %></div>
-    <p><%= pokemon.name %><br />
+ <% class1 = "accordian" + count.to_s %>
+ <% class2 = "collapse" + count.to_s %>
+ <% class3 = pokemon.type.split('/').first %>
+   <div class="accordian <%= class3 %>" id="<%= class1 %>">    
+    <div class="accordian-group">
+      <div class="accordian-heading"><a class="accordian-toggle" data-toggle="collapse" data-parent="<%= "#" + class1 %>" href="<%= "#" + class2 %>">#<%= pokemon.pokedex_number %> <%= pokemon.name %></a></div>
+    <div id="<%= class2 %>" class="accordian-body collapse">
+      <div class="accordian-inner">
+    <%= image_tag pokemon.avatar.url, {:size => "100x100", :style => "float: left"} %>
+    <div style="padding-top: 10px">
     Type: <%= pokemon.type %><br />
     Species: <%= pokemon.species %><br />
     Owned by: <%= pokemon.trainer.first_name %><br />
-    
-    <% unless pokemon.party.nil? %>
-    In party: <%= pokemon.party.name %><br /><br />
-    <% end %>
+ 
     <%= link_to 'Show', pokemon %> | 
     <% if @trainer.party.nil? %>
           <%= link_to 'Add to my party', add_url(:id => pokemon) %>
         <% else %>
-	  <% if @trainer.party.pokemon.to_a.any? {|x| x.name == pokemon.name } %>
+	  <% if @trainer.party.pokemon.to_a.any? {|x| x == pokemon.id } %>
             <%= link_to 'Remove from my party', remove_url(:id => pokemon) %>
           <% else %>
             <%= link_to 'Add to my party', add_url(:id => pokemon) %>
           <% end %>
-  <% end %>
-     | 
-    <%= link_to 'Edit', edit_pokemon_path(pokemon) %> | 
-    <%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %><br />
+  <% end %> 
+    | <%= link_to 'Edit', edit_pokemon_path(pokemon) %> | 
+    <%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %><br /></div>
+  <% count = count + 1 %>
   </div>
+</div>
+</div>
+</div>
 <% end %>
 
 <br />

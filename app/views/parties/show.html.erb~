@@ -5,7 +5,7 @@
 Is a selection of the following Pokemon: </p>
 <br />
 <% @party.pokemon.to_a.each do |p| %>
-<p> <%= image_tag p.avatar.url, {:size => "100x100", :style => "float: left"} %> </p>
+<p> <% pokemon = Pokemon.find(p) %> <%= image_tag pokemon.avatar.url, {:size => "100x100", :style => "float: left"} %> </p>
 <% end %>
 <br style="clear:both" />
 <br />

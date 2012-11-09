@@ -1,1 +1,5 @@
-<div class="container"><div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><ul class="nav"><li class="active"><a href="#">Michael D'Egidio</a></li><li><a href="mailto:mad2144@columbia.edu">mad2144@columbia.edu</a></li></ul></div></div>
+<div class="container">
+  <div class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+    <ul class="nav pull-right">
+    <li class="active"><a href="#">Written by Michael D'Egidio</a></li><li><a href="mailto:mad2144@columbia.edu">mad2144@columbia.edu</a></li></ul></div></div></div>

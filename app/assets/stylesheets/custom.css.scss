@@ -1,0 +1,55 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+body {
+	padding: 60px 10px 10px 10px;
+}
+
+.brand:hover {
+  background-color: #EEE;
+}
+
+.accordian {
+  width: 600px;
+}
+
+.accordian-group {
+  margin-bottom: 2px;
+  border:1px solid #E5E5E5;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+.accordian-heading {
+  padding-left: 5px;
+  padding-top: 2.5px;
+  margin-bottom: 5px;	
+}
+
+.accordian-inner img {
+  padding-right: 10px;
+  padding-left: 5px;
+  padding-bottom: 15px;
+}
+
+.Fire { background-color: #FF6363; }
+.Water { background-color: #63BBFF; }
+.Grass { background-color: #06EE61; }
+.Electric { background-color: #ECFF1f; }
+.Normal { background-color: #DDD; }
+.Psychic { background-color: #F7A8F2; }
+.Fighting { background-color: #A30000; }
+.Flying { background-color: #B3C4FF; } 
+.Poison { background-color: #C361D4; } 
+.Ground { background-color: #C9BD93; }
+.Rock { background-color: #A3935D; }
+.Bug { background-color: #A4CF6D; }
+.Ghost { background-color: #660082; }
+.Steel { background-color: #C4C4C4; }
+.Ice { background-color: #92E0DB; }
+.Dragon { background-color: #7591FF; }
+.Dark { background-color: #7A3F00; }
+
+
+

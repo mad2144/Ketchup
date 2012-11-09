@@ -27,6 +27,6 @@
 </p>
 
 <%= image_tag @pokemon.avatar.url %>
-
+<br />
 <%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
 <%= link_to 'Back', pokemons_path %>

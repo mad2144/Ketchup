@@ -10,11 +10,13 @@
 <% party = '/parties/new' %>
 <% end %>
 <li><%= link_to 'My Pokemon', '/pokemons' %></li><li><%= link_to 'My Party', party %></li>
-<li><%= link_to 'My Trainer Profile', u %></li><li><a href="#"><%= u.email %></a></li><li><%= link_to 'Logout', '/logout' %></li>
+<li><%= link_to 'My Trainer Profile', u %></li>
+</ul>
+<ul class="nav pull-right"><li class="active"><a href="#"><%= u.email %></a></li><li><%= link_to 'Logout', '/logout' %></li></ul>
 <% else %>
 <li><a href="/trainers/new">Join Ketchup!</a></li>
 <% end %>
-</ul>
+
 </div>
 </div>
 </div>

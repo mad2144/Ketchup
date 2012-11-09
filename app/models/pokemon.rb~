@@ -11,7 +11,6 @@ class Pokemon
   key :species, String
   
   belongs_to :trainer
-  belongs_to :party
 
   validate :name_exists
   validate :match

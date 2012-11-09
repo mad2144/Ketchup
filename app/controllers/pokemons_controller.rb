@@ -5,7 +5,7 @@ class PokemonsController < ApplicationController
   def index
     @trainer = Trainer.find(session[:user_id])
     
-    puts @trainer.party.pokemon.to_a.length
+    #puts @trainer.party.pokemon.to_a.length
 
     if @trainer.admin == 1
     	@pokemons = Pokemon.all(:order => :pokedex_number.asc)
@@ -42,8 +42,8 @@ class PokemonsController < ApplicationController
 	end    
     else
 
-      unless ((@trainer.party.pokemon.to_a.any? { |pokemon| pokemon == @pokemon }) || @trainer.party.pokemon.to_a.length >= 4)
-	@trainer.party.pokemon.push @pokemon
+      unless ((@trainer.party.pokemon.to_a.any? { |pokemon| pokemon == @pokemon }) || @trainer.party.pokemon.to_a.length >= 6)
+	@trainer.party.pokemon.push @pokemon.id
 
         if (@trainer.party.save && @pokemon.save && @trainer.save) 
 	  respond_to do |format|

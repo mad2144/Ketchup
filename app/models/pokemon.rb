@@ -11,16 +11,8 @@ class Pokemon
   key :species, String
   
   belongs_to :trainer
-  belongs_to :party
 
   validate :name_exists
-  validate :match
-
-  def match
-	if ((not party.nil?) && party.trainer != trainer)
-	  errors.add(:party, "The party must be owned the same trainer")
-	end
-  end
 
   def name_exists
         if name.empty?
