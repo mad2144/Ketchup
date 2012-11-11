@@ -26,6 +26,35 @@
   <%= @pokemon.trainer.last_name %>
 </p>
 
+<p>
+  <b>HP:</b>
+  <%= @pokemon.HP %> / <%= @pokemon.HP_MAX %>
+</p>
+<p>
+<b> Fainted: </b> <%= @pokemon.fainted %>
+</p>
+<p>
+  <b>ATK:</b>
+  <%= @pokemon.ATK %>
+</p>
+<p>
+  <b>DEF:</b>
+  <%= @pokemon.DEF %>
+</p>
+<p>
+  <b>SATK:</b>
+  <%= @pokemon.SATK %>
+</p>
+<p>
+  <b>SDEF:</b>
+  <%= @pokemon.SDEF %>
+</p>
+<p>
+  <b>SPD:</b>
+  <%= @pokemon.SPD %>
+</p>
+
+
 <%= image_tag @pokemon.avatar.url %>
 <br />
 <%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |

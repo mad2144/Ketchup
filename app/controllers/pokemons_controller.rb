@@ -4,8 +4,6 @@ class PokemonsController < ApplicationController
 
   def index
     @trainer = Trainer.find(session[:user_id])
-    
-    #puts @trainer.party.pokemon.to_a.length
 
     if @trainer.admin == 1
     	@pokemons = Pokemon.all(:order => :pokedex_number.asc)
@@ -57,6 +55,77 @@ class PokemonsController < ApplicationController
       end
     end
   end
+
+  def attack
+    @p1 = Pokemon.find(params[:id_1])
+    @p2 = Pokemon.find(params[:id_2])
+    @battle = Battle.first(:p1 => @p1.id.to_s, :p2 => @p2.id.to_s)
+
+ 	if @p1.HP > 0
+	      @p1.fainted = false
+	    end
+
+    if @p1.SPD > @p2.SPD
+      if rand(100) <= (@p2.SPD - @p1.ATK)
+	    
+	    dmg = @p2.ATK - @p1.ATK
+	    
+            if dmg < 0
+		dmg = 0
+	    end
+
+	    @p1.HP = @p2.ATK - @p1.DEF
+
+	    if @p1.HP <= 0
+	      @p1.fainted = true
+              @p1.HP = 0
+	    end
+
+	    @p1.save
+            @p2.save
+            respond_to do |format|
+       	      format.html { redirect_to @battle, notice: @p2.name + ' dodged your attack and hit you for ' + dmg + ' damage!' }
+      	    end
+      else
+
+          dmg = @p1.ATK - @p2.DEF
+        
+	  if dmg < 0
+	     dmg = 0
+	  end 
+
+	  @p2.HP = @p2.HP - dmg
+	
+	  if @p2.HP <= 0
+	    @p2.fainted = true
+            @p2.HP = 0
+	  end
+
+          if not (@p2.fainted && (rand(100) <= (@p1.SPD - @p2.ATK)))
+      
+            dmg2 = @p2.ATK - @p1.DEF
+	    
+            if dmg2 < 0
+		dmg2 = 0
+	    end
+
+	    @p1.HP = @p1.HP - dmg2
+
+	    if @p1.HP <= 0
+	      @p1.fainted = true
+              @p1.HP = 0
+	    end
+          end
+
+	  @p1.save
+	  @p2.save
+      
+          respond_to do |format|
+       	      format.html { redirect_to @battle, notice: @p2.name + ' was hit for ' + dmg.to_s + ' damage!. ' + @p2.name + ' strikes back for ' + dmg2.to_s + " damage!" }
+      	  end
+       end
+    end  
+end
 
   # GET /pokemons/new
   # GET /pokemons/new.json

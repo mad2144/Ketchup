@@ -6,7 +6,7 @@ class Trainer
   key :hometown, String
   key :motto, String
   key :email, String
-  key :admin, Integer
+  key :admin, Integer, :default => 0
   one :party
   many :pokemon
   

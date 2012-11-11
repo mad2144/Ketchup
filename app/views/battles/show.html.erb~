@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+<center>
+<%= link_to 'Attack', '/pokemons/' + @battle.p1 + '/' + @battle.p2 + '/attack' %> | 
+<%= link_to 'Edit', edit_battle_path(@battle) %> |
+<%= link_to 'Back', battles_path %><% p1 = Pokemon.find(@battle.p1) %>
+</center>
+<br style="clear: both" />
+<% p2 = Pokemon.find(@battle.p2) %>
+
+<div style="float: left">
+	<%= image_tag p1.avatar.url %>
+        <br />
+        <br />
+<p>
+  <b>HP:</b>
+  <%= p1.HP %> / <%= p1.HP_MAX %>
+</p>
+<% if p1.fainted %>
+<p style="color: red">
+<b>Fainted</b>
+</p>
+<% end %>
+<p>
+  <b>ATK:</b>
+  <%= p1.ATK %>
+</p>
+<p>
+  <b>DEF:</b>
+  <%= p1.DEF %>
+</p>
+<p>
+  <b>SATK:</b>
+  <%= p1.SATK %>
+</p>
+<p>
+  <b>SDEF:</b>
+  <%= p1.SDEF %>
+</p>
+<p>
+  <b>SPD:</b>
+  <%= p1.SPD %>
+</p>
+</div>
+
+
+<div style="float: right">
+	<%= image_tag p2.avatar.url %>
+        <br />
+        <br />
+<p>
+  <b>HP:</b>
+  <%= p2.HP %> / <%= p2.HP_MAX %>
+</p>
+<% if p2.fainted %>
+<p style="color: red">
+<b>Fainted</b>
+</p>
+<% end %>
+<p>
+  <b>ATK:</b>
+  <%= p2.ATK %>
+</p>
+<p>
+  <b>DEF:</b>
+  <%= p2.DEF %>
+</p>
+<p>
+  <b>SATK:</b>
+  <%= p2.SATK %>
+</p>
+<p>
+  <b>SDEF:</b>
+  <%= p2.SDEF %>
+</p>
+<p>
+  <b>SPD:</b>
+  <%= p2.SPD %>
+</p>
+</div>
+</div>
+
+

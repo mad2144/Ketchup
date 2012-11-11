@@ -14,10 +14,10 @@
     <%= image_tag pokemon.avatar.url, {:size => "100x100", :style => "float: left"} %>
     <div style="padding-top: 10px">
     Type: <%= pokemon.type %><br />
-    Species: <%= pokemon.species %><br />
+    Species: <%= pokemon.species %> Pokemon<br />
     Owned by: <%= pokemon.trainer.first_name %><br />
  
-    <%= link_to 'Show', pokemon %> | 
+    <%= link_to 'Show Stats', pokemon %> | 
     <% if @trainer.party.nil? %>
           <%= link_to 'Add to my party', add_url(:id => pokemon) %>
         <% else %>

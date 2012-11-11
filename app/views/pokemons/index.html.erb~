@@ -17,7 +17,7 @@
     Species: <%= pokemon.species %><br />
     Owned by: <%= pokemon.trainer.first_name %><br />
  
-    <%= link_to 'Show', pokemon %> | 
+    <%= link_to 'Show Stats', pokemon %> | 
     <% if @trainer.party.nil? %>
           <%= link_to 'Add to my party', add_url(:id => pokemon) %>
         <% else %>

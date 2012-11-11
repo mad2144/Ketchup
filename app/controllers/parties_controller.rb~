@@ -59,10 +59,11 @@ class PartiesController < ApplicationController
 
       unless (@pokemon.nil? && @party.nil?)
       	@party.pokemon.delete @pokemon.id
-        @party.save
+        if @party.save
         respond_to do |format|
           format.html { redirect_to @party, :notice => "Removed Pokemon from party." }
-      end
+        end
+      end 
     else
 	respond_to do |format|
           format.html { redirect_to @party, :notice => "Failed to remove Pokemon from party." }
