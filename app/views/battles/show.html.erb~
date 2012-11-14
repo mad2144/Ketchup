@@ -1,16 +1,13 @@
 <p id="notice"><%= notice %></p>
 <center>
-<%= link_to 'Attack', '/pokemons/' + @battle.p1 + '/' + @battle.p2 + '/attack' %> | 
-<%= link_to 'Edit', edit_battle_path(@battle) %> |
-<%= link_to 'Back', battles_path %><% p1 = Pokemon.find(@battle.p1) %>
-</center>
+<ul class="nav"><li class="nav-pill"><%= link_to 'Attack', '/pokemons/' + @battle.p1 + '/' + @battle.p2 + '/attack', :style => "font-size: 30px" %></li></ul>
+<% p1 = Pokemon.find(@battle.p1) %>
 <br style="clear: both" />
 <% p2 = Pokemon.find(@battle.p2) %>
-
+<div style="margin: auto 0; width: 80%">
 <div style="float: left">
-	<%= image_tag p1.avatar.url %>
-        <br />
-        <br />
+	
+<div style="float: left; padding-top: 30px; margin-right: 20px">
 <p>
   <b>HP:</b>
   <%= p1.HP %> / <%= p1.HP_MAX %>
@@ -40,13 +37,13 @@
   <b>SPD:</b>
   <%= p1.SPD %>
 </p>
+</div><%= image_tag p1.avatar.url, :size => "200x200", :style=> "float: right; margin-right: 20px" %>
 </div>
 
 
-<div style="float: right">
-	<%= image_tag p2.avatar.url %>
-        <br />
-        <br />
+<div style="float: left; margin-left: 100px;">
+	<%= image_tag p2.avatar.url, :size => "200x200", :style=> "float: left; margin-right: 20px" %>
+<div style="float: right; padding-top: 30px">
 <p>
   <b>HP:</b>
   <%= p2.HP %> / <%= p2.HP_MAX %>
@@ -78,5 +75,7 @@
 </p>
 </div>
 </div>
-
+</div>
+</center>
+</div>
 

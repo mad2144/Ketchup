@@ -3,5 +3,6 @@ class Battle
 
   key :p1, String
   key :p2, String
+  belongs_to :Trainer
 
 end

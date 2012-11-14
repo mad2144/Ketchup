@@ -57,36 +57,38 @@ class PokemonsController < ApplicationController
   end
 
   def attack
+    #find the two pokemon
     @p1 = Pokemon.find(params[:id_1])
     @p2 = Pokemon.find(params[:id_2])
+
+    puts @p1
+    puts @p2
+    #find the battle
     @battle = Battle.first(:p1 => @p1.id.to_s, :p2 => @p2.id.to_s)
 
- 	if @p1.HP > 0
-	      @p1.fainted = false
-	    end
+    if rand(100) <= (@p2.SPD - @p1.ATK)
+	#they dodge you
+	dmg = @p2.ATK - @p1.ATK
+    
+        if dmg < 0
+	  dmg = 0
+	end
 
-    if @p1.SPD > @p2.SPD
-      if rand(100) <= (@p2.SPD - @p1.ATK)
-	    
-	    dmg = @p2.ATK - @p1.ATK
-	    
-            if dmg < 0
-		dmg = 0
-	    end
+        @p1.HP = @p1.HP - dmg
 
-	    @p1.HP = @p2.ATK - @p1.DEF
+        if @p1.HP <= 0
+	  @p1.fainted = true
+          @p1.HP = 0
+	end
 
-	    if @p1.HP <= 0
-	      @p1.fainted = true
-              @p1.HP = 0
-	    end
+	@p1.save
+        @p2.save
 
-	    @p1.save
-            @p2.save
-            respond_to do |format|
-       	      format.html { redirect_to @battle, notice: @p2.name + ' dodged your attack and hit you for ' + dmg + ' damage!' }
-      	    end
+        respond_to do |format|
+       	  format.html { redirect_to @battle, notice: @p2.name + ' dodged your attack and hit you for ' + dmg + ' damage!' }
+      	end
       else
+	  #they don't dodge you
 
           dmg = @p1.ATK - @p2.DEF
         
@@ -101,8 +103,13 @@ class PokemonsController < ApplicationController
             @p2.HP = 0
 	  end
 
-          if not (@p2.fainted && (rand(100) <= (@p1.SPD - @p2.ATK)))
-      
+          notice = "You hit them for " + dmg.to_s
+
+          #if they can attack back
+          if not @p2.fainted
+           if rand(100) > (@p1.SPD - @p2.ATK)
+      	    #you don't dodge
+
             dmg2 = @p2.ATK - @p1.DEF
 	    
             if dmg2 < 0
@@ -115,17 +122,23 @@ class PokemonsController < ApplicationController
 	      @p1.fainted = true
               @p1.HP = 0
 	    end
-          end
 
-	  @p1.save
-	  @p2.save
-      
-          respond_to do |format|
-       	      format.html { redirect_to @battle, notice: @p2.name + ' was hit for ' + dmg.to_s + ' damage!. ' + @p2.name + ' strikes back for ' + dmg2.to_s + " damage!" }
-      	  end
-       end
-    end  
-end
+	    notice += " and you are hit back for " + dmg2.to_s 
+ 
+            else
+	      notice += " and you dodge their attack!"
+	    end
+ 	   else
+		notice += " and they fainted!"
+           end
+           
+	    @p1.save
+	    @p2.save
+            respond_to do |format|
+       	      format.html { redirect_to @battle, notice: notice}
+      	    end
+     end
+  end
 
   # GET /pokemons/new
   # GET /pokemons/new.json

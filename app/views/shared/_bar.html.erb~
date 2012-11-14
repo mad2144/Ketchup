@@ -1,7 +1,7 @@
 <div class="container">
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <a class="brand" style="margin-left: 0px" href="/login">Ketchup</a>
+    <a class="brand" style="margin-left: 0px" href="/pokemons">Ketchup</a>
     <ul class="nav">
 <% u = Trainer.find(session[:user_id]) %>
 <% unless u.nil? %>
@@ -11,7 +11,7 @@
 <% end %>
 <li><%= link_to 'My Pokemon', '/pokemons' %></li><li><%= link_to 'My Party', party %></li>
 <li><%= link_to 'My Trainer Profile', u %></li>
-<li><%= link_to 'My Battles', u %></li>
+<li><%= link_to 'My Battles', '/battles' %></li>
 </ul>
 <ul class="nav pull-right"><li class="active"><a href="#"><%= u.email %></a></li><li><%= link_to 'Logout', '/logout' %></li></ul>
 <% else %>

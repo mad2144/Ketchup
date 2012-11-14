@@ -2,7 +2,13 @@ class BattlesController < ApplicationController
   # GET /battles
   # GET /battles.json
   def index
-    @battles = Battle.all
+    @trainer = Trainer.find(session[:user_id])
+
+    if @trainer.admin == 1
+    	@battles = Battle.all
+    else
+	@battles = Battle.where(:trainer_id => @trainer.id)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +47,7 @@ class BattlesController < ApplicationController
   # POST /battles.json
   def create
     @battle = Battle.new(params[:battle])
+    @battle.trainer = Trainer.find(session[:user_id])
 
     respond_to do |format|
       if @battle.save
