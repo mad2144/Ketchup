@@ -240,7 +240,7 @@ class Pokemon
 
   validate :name_exists
   validate :valid_dex
-  after_validation :set_stats
+  after_create :set_stats
 
   def name_exists
         if name.empty?
@@ -249,7 +249,7 @@ class Pokemon
   end
 
   def valid_dex
-        if pokedex_number <= 0
+        if pokedex_number < 0
           errors.add(:pokedex_number, "Every Pokemon must have a valid pokedex number!")
         end
   end

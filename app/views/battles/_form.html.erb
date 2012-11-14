@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="actions">
-    <%= collection_select(:battle, :p1, Pokemon.all, :id.to_s, :name) %>
+    <%= collection_select(:battle, :p1, Pokemon.where(:trainer_id => Trainer.find(session[:user_id]).id), :id.to_s, :name) %>
     <%= collection_select(:battle, :p2, Pokemon.all, :id.to_s, :name) %>
     <%= f.submit %>
   </div>

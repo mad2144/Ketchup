@@ -1,24 +1,18 @@
+<%= link_to 'New Battle', new_battle_path %>
 <h1>Listing battles</h1>
 
-<table>
-  <tr>
-    <th>Pokemon 1</th>
-    <th>Pokemon 2</th>
-    <th>Started by</th>
-  </tr>
-
 <% @battles.each do |battle| %>
-  <tr>
-    <td><%= Pokemon.find(battle.p1).name %></td>
-    <td><%= Pokemon.find(battle.p2).name %></td>
-    <td><%= battle.trainer.first_name %></td>
-    <td><%= link_to 'Show', battle %></td>
-    <td><%= link_to 'Edit', edit_battle_path(battle) %></td>
-    <td><%= link_to 'Destroy', battle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <div style="clear:both">
+    <div class="float:left"><%= image_tag Pokemon.find(battle.p1).avatar.url, {:size => "100x100", :title => Pokemon.find(battle.p1).name} %> VS 
+    <%= image_tag Pokemon.find(battle.p2).avatar.url, {:size => "100x100", :title => Pokemon.find(battle.p2).name} %></div>
+    <div style="float:left"><br />
+    Started by: <%= battle.trainer.first_name %><br />
+    <%= link_to 'Enter Battle!', battle %><br />
+    <%= link_to 'Edit', edit_battle_path(battle) %> | 
+    <%= link_to 'Destroy', battle, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+  </div>
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New Battle', new_battle_path %>
+

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<div>
+<%= image_tag @pokemon.avatar.url, :style => "float:right" %>
 <p>
   <b>Pokedex number:</b>
   <%= @pokemon.pokedex_number %>
@@ -53,9 +54,8 @@
   <b>SPD:</b>
   <%= @pokemon.SPD %>
 </p>
+</div>
 
-
-<%= image_tag @pokemon.avatar.url %>
 <br />
 <%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
 <%= link_to 'Back', pokemons_path %>

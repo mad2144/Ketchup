@@ -4,7 +4,7 @@
 <% p1 = Pokemon.find(@battle.p1) %>
 <br style="clear: both" />
 <% p2 = Pokemon.find(@battle.p2) %>
-<div style="margin: auto 0; width: 80%">
+<div style="margin: auto 0">
 <div style="float: left">
 	
 <div style="float: left; padding-top: 30px; margin-right: 20px">
@@ -37,12 +37,12 @@
   <b>SPD:</b>
   <%= p1.SPD %>
 </p>
-</div><%= image_tag p1.avatar.url, :size => "200x200", :style=> "float: right; margin-right: 20px" %>
+</div><%= image_tag p1.avatar.url, :size => "190x190", :style=> "float: right; margin-right: 20px" %>
 </div>
 
 
 <div style="float: left; margin-left: 100px;">
-	<%= image_tag p2.avatar.url, :size => "200x200", :style=> "float: left; margin-right: 20px" %>
+	<%= image_tag p2.avatar.url, :size => "190x190", :style=> "float: left; margin-right: 20px" %>
 <div style="float: right; padding-top: 30px">
 <p>
   <b>HP:</b>
