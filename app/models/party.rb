@@ -4,5 +4,6 @@ class Party
   key :pokemon, Array
 
   belongs_to :trainer
-  
+
+  validates :name, presence: true, uniqueness: {message: "Party name already in use."}
 end

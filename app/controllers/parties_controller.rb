@@ -23,7 +23,11 @@ class PartiesController < ApplicationController
   # GET /parties/1
   # GET /parties/1.json
   def show
-    @party = Party.find(params[:id])
+    if params[:name]
+	@party = Party.where(:name => params[:name]).first
+    else
+	@party = Party.find(params[:id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb

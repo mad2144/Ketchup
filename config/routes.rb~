@@ -17,7 +17,11 @@ Ketchup::Application.routes.draw do
 
   match '/parties/:id/remove' => 'parties#remove', :as => "remove"
 
-  match '/pokemons/:id_1/:id_2/attack' => 'pokemon#attack', :as => "attack"
+  match '/pokemons/:id_1/:id_2/attack' => 'pokemons#attack', :as => "attack"
+
+  match '*name' => 'parties#show'
+
+  get "/"=> 'home#index', :as => "home" 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -68,7 +72,7 @@ Ketchup::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 
