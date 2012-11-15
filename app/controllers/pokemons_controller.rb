@@ -70,8 +70,8 @@ class PokemonsController < ApplicationController
 	#they dodge you
 	dmg = @p2.ATK - @p1.ATK
     
-        if dmg < 0
-	  dmg = 0
+        if dmg <= 0
+	  dmg = 1
 	end
 
         @p1.HP = @p1.HP - dmg
@@ -92,8 +92,8 @@ class PokemonsController < ApplicationController
 
           dmg = @p1.ATK - @p2.DEF
         
-	  if dmg < 0
-	     dmg = 0
+	  if dmg <= 0
+	     dmg = 1
 	  end 
 
 	  @p2.HP = @p2.HP - dmg
@@ -112,8 +112,8 @@ class PokemonsController < ApplicationController
 
             dmg2 = @p2.ATK - @p1.DEF
 	    
-            if dmg2 < 0
-		dmg2 = 0
+            if dmg2 <= 0
+		dmg2 = 1
 	    end
 
 	    @p1.HP = @p1.HP - dmg2
