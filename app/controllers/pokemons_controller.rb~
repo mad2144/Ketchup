@@ -118,13 +118,14 @@ class PokemonsController < ApplicationController
 
 	    @p1.HP = @p1.HP - dmg2
 
+	    notice += " and you are hit back for " + dmg2.to_s + "."
+
 	    if @p1.HP <= 0
 	      @p1.fainted = true
               @p1.HP = 0
+	      notice += " You fainted!"
 	    end
-
-	    notice += " and you are hit back for " + dmg2.to_s 
- 
+	     
             else
 	      notice += " and you dodge their attack!"
 	    end

@@ -2,6 +2,8 @@ class PartiesController < ApplicationController
   # GET /parties
   # GET /parties.json
 
+  layout :determine_layout 
+
   skip_before_filter :require_user, :only=> [:show]
 
   def index
@@ -126,4 +128,13 @@ class PartiesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+ def determine_layout
+   case action_name
+   when "show"
+     "public"
+   else
+     "master"
+   end
+ end
 end
